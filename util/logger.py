@@ -1,7 +1,7 @@
 import logging
 import logging.config
 from logging.handlers import RotatingFileHandler
-import ais_gfss_parameter as cfg
+import gfss_reports_parameter as cfg
 import app_config as cfg_app
 from app_config import debug
 

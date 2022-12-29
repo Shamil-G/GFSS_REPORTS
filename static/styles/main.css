@@ -1,0 +1,155 @@
+@import url('clear.css');
+@import url('forms.css');
+@import url('table_styles.css');
+@import url('button.css');
+@import url('button_input.css');
+@import url('elements.css');
+
+:root {
+    --base-color-text: #307080;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    /*color: #307080;*/
+    color: var(--base-color-text);
+    text-align: left;
+    font-family: Calibri, sans-serif;
+    /*background-image: url(mathematics.jpg);*/
+}
+
+nav, article {
+    border-radius: 5px;
+    border: 1px solid rgba(0, 47, 189, 0.3);
+}
+
+header, footer, .article_title {
+    padding-left: 8px;
+    border-radius: 3px;
+    border: 1px solid rgba(0, 47, 189, 0.3);
+}
+
+.common-container {
+    min-height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+    grid-template-rows: 32px 32px auto 32px;
+    grid-gap: 1px;
+    grid-template-areas: "header header"
+        "nav article_title"
+        "nav article"
+        "footer footer";
+}
+
+header {
+    color: white;
+    display: grid;
+    grid-template-columns: 4fr 4fr 1fr;
+    background: rgba(21, 165, 41, 1);
+    align-items: center;
+    grid-area: header; /* задаем имя элемента */
+}
+
+footer {
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+    color: white;
+    background: rgba(21, 165, 41, 1);
+    grid-area: footer; /* задаем имя элемента */
+}
+
+.footer-l {
+    margin-left: 10px;
+    /*color: #307080;*/
+    font-weight: bold;
+}
+
+footer > .footer-r, header > .header-r {
+    /*margin-left: 15px;*/
+    margin-right: 10px;
+    text-align: right;
+}
+
+nav {
+    margin: 0;
+    padding: 1px;
+    /*display: grid;*/
+    overflow-x: hidden;
+/*    grid-template-rows: repeat(9,minmax(24px, 80px));
+    grid-template-columns: 100%;
+    grid-row-gap: 1px;
+*/    grid-area: nav; /* задаем имя элемента */
+}
+
+nav > a {
+    text-decoration: none;
+    margin-top: 1px;
+    padding: 5px 5px;
+    font-weight: bold;
+    align-items: center;
+    padding-left: 5px;
+    display: flex;
+    color: #307080;
+    border: inherit;
+    border-radius: inherit;
+}
+
+nav > a:hover {
+    background: #b2f1f4;
+}
+
+article {
+    margin: 0;
+    grid-area: article; /* задаем имя элемента */
+}
+
+.article_title {
+    display: flex; /*Для выравнивания заголовка по центру*/
+    align-items: center; /*Для выравнивания заголовка по центру*/
+    grid-area: article_title; /* задаем имя элемента */
+}
+
+a[href^='/language'], header a[href^='/log'] {
+    color: white;
+    margin-left: 15px;
+    padding-right: 5px;
+    text-decoration: none;
+}
+
+.role-container {
+    min-height: 100%;
+    margin-left: 15px;
+    margin-top: 15px;
+    /*margin-rigth: auto;*/
+    display: grid;
+    grid-template-columns: auto auto;
+    /*grid-template-rows: 15px auto;*/
+    grid-gap: 4px;
+    /*grid-template-areas: "role_header_all role_header_selected"*/
+    /*                     "role_all role_selected";*/
+    grid-template-areas: "role_all role_selected";
+}
+/*.role_header_all {*/
+/*    padding: 10px 5px;*/
+/*    color: black;*/
+/*    align-items: center;*/
+/*    grid-area: role_header_all;  !* задаем имя элемента *!*/
+/*}*/
+/*.role_header_selected {*/
+/*    padding: 10px 5px;*/
+/*    color: black;*/
+/*    align-items: center;*/
+/*    grid-area: role_header_selected;  !* задаем имя элемента *!*/
+/*}*/
+.role_all {
+    color: black;
+    align-items: end;
+    grid-area: role_all; /* задаем имя элемента */
+}
+
+.role_selected {
+    color: black;
+    align-items: center;
+    grid-area: role_selected; /* задаем имя элемента */
+}

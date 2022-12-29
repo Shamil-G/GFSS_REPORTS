@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ res_value('APP_NAME') }}
+{% endblock %}
+
+{% block main_title %}
+<h3 class="title">
+    {% if 'current_dep' in session %}
+        {% if 'current_grp' in session %}
+            {{ current_dep }}. {{ res_value('GRP_REPORTS') }}: {{ current_grp }}
+        {% else %}
+            {{ current_dep }}. {{ res_value('SELECT_GRP_REPORTS') }}:&nbsp;
+            {% for grp in grps %}
+                <a href="/set-grp/{{grp}}">{{grp}}</a>&nbsp;
+            {% endfor %}
+        {% endif %}
+    {% else %}
+    {{ res_value('SELECT_DEP_REPORTS') }}
+    {% endif %}
+</h3>
+{% endblock %}
+
+{% block body %}
+<form class="form_register" method="POST">
+    {% if 'current_dep' in session and 'current_grp' in session %}
+        {% for rep in list_reports %}
+            <a style="margin-left: 10px; margin-top:20px;" href="/set-report/{{rep[0]}}">{{rep[0]}}-&nbsp;{{ rep[1] }}</a>
+            <br/>
+        {% endfor %}
+    {% endif %}
+</form>
+{% endblock %}

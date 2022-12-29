@@ -1,7 +1,7 @@
 import db_config as cfg
 from util.logger import log
 from flask import request
-from ais_gfss_parameter import using
+from gfss_reports_parameter import using
 import cx_Oracle
 # from cx_Oracle import SessionPool
 # con = cx_Oracle.connect(cfg.username, cfg.password, cfg.dsn, encoding=cfg.encoding)
@@ -28,13 +28,13 @@ _pool = cx_Oracle.SessionPool(cfg.username, cfg.password, cfg.dsn,
                               max_lifetime_session=cfg.max_lifetime_session,
                               encoding=cfg.encoding, min=cfg.pool_min, max=cfg.pool_max, increment=cfg.pool_inc,
                               threaded=True, sessionCallback=init_session)
-log.info(f'Пул соединенй БД Oracle создан. Timeout: {_pool.timeout}, wait_timeout: {_pool.wait_timeout}, '
+log.info(f'РџСѓР» СЃРѕРµРґРёРЅРµРЅР№ Р‘Р” Oracle СЃРѕР·РґР°РЅ. Timeout: {_pool.timeout}, wait_timeout: {_pool.wait_timeout}, '
          f'max_lifetime_session: {_pool.max_lifetime_session}, min: {cfg.pool_min}, max: {cfg.pool_max}')
 
 
 def get_connection():
     if cfg.Debug > 3:
-        log.debug("Получаем курсор!")
+        log.debug("РџРѕР»СѓС‡Р°РµРј РєСѓСЂСЃРѕСЂ!")
     return _pool.acquire()
 
 
@@ -48,7 +48,7 @@ def select(stmt):
     err_mess = ''
     try:
         with get_connection().cursor() as cursor:
-            #log_outcoming.info(f"\nВыбираем данные: {stmt}")
+            #log_outcoming.info(f"\nР’С‹Р±РёСЂР°РµРј РґР°РЅРЅС‹Рµ: {stmt}")
             cursor.execute(stmt)
             recs = cursor.fetchall()
             for rec in recs:
@@ -68,7 +68,7 @@ def select_one(stmt, args):
     err_mess = ''
     try:
         with get_connection().cursor() as cursor:
-            #log_outcoming.info(f"\nВыбираем данные: {stmt}")
+            #log_outcoming.info(f"\nР’С‹Р±РёСЂР°РµРј РґР°РЅРЅС‹Рµ: {stmt}")
             cursor.execute(stmt, args)
             rec = cursor.fetchone()
     except cx_Oracle.DatabaseError as e:
@@ -122,9 +122,9 @@ def plsql_func(cursor, f_name, func_name, args):
 
 
 if __name__ == "__main__":
-    log.debug("Тестируем CONNECT блок!")
+    log.debug("РўРµСЃС‚РёСЂСѓРµРј CONNECT Р±Р»РѕРє!")
     con = get_connection()
-    log.debug("Версия: " + con.version)
+    log.debug("Р’РµСЂСЃРёСЏ: " + con.version)
     val = "Hello from main"
     con.close()
     _pool.close()

@@ -1,7 +1,7 @@
 from typing import List, Any
 from flask import render_template, request, redirect, flash, url_for, g, session
 from flask_login import LoginManager, login_required, logout_user, login_user, current_user
-from model.utils import *
+from util.utils import *
 import cx_Oracle
 from werkzeug.security import check_password_hash, generate_password_hash
 from db.connect import get_connection, ip_addr
@@ -12,7 +12,7 @@ import app_config as cfg
 login_manager = LoginManager(app)
 login_manager.login_view = 'view_index'
 
-log.debug("UserLogin стартовал...")
+log.debug("UserLogin СЃС‚Р°СЂС‚РѕРІР°Р»...")
 
 
 class User:
@@ -143,12 +143,12 @@ def authority():
     try:
         if order_num:
             log.info(f"AUTHORITY. ORDER_NUM: {order_num}, ip_addr: {ip_addr()}, lang: {session['language']}")
-            # Создаем объект регистрации
+            # РЎРѕР·РґР°РµРј РѕР±СЉРµРєС‚ СЂРµРіРёСЃС‚СЂР°С†РёРё
             user = User().get_user_by_num_order(order_num, session['language'])
             if user.is_authenticated():
                 login_user(user)
                 if type(user.remain_time) is int and user.remain_time > 0:
-                    log.info(f"AUTHORITY. Идем на тестирование. {user.num_order}, "
+                    log.info(f"AUTHORITY. РРґРµРј РЅР° С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ. {user.num_order}, "
                              f"IIN: {user.iin}, ip_addr: {user.ip_addr}, remain_time: {user.remain_time}")
                     return 1
                 if type(user.remain_time) is int and user.remain_time <= 0:

@@ -1,4 +1,4 @@
-from ais_gfss_parameter import using
+from gfss_reports_parameter import using
 from util.logger import log
 #import redis
 
